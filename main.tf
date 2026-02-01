@@ -1,7 +1,6 @@
 
 
 
-/*
 data "terraform_remote_state" "remote_outputs" {
   backend = "remote"
 
@@ -13,7 +12,7 @@ data "terraform_remote_state" "remote_outputs" {
   }
 }
 
-*/
+
 resource "random_pet" "this" {
   length = 2
 }
@@ -36,7 +35,7 @@ resource "equinix_fabric_connection" "vd2AWS_Pri" {
       type = "VD"
       virtual_device {
         type = "EDGE"
-        uuid = "74afe6aa-f176-439b-b59a-714efd686db0"
+        uuid = data.terraform_remote_state.remote_outputs.outputs.primary_device_uuid
       }
       interface {
         type = "CLOUD"
@@ -78,7 +77,7 @@ resource "equinix_fabric_connection" "vd2AWS_Sec" {
       type = "VD"
       virtual_device {
         type = "EDGE"
-        uuid = "e42c85b5-1e25-43fb-a13e-372a0ec4764a"
+        uuid = data.terraform_remote_state.remote_outputs.outputs.secondary_device_uuid
       }
       interface {
         type = "CLOUD"
