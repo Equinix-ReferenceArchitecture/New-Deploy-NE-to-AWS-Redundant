@@ -22,15 +22,15 @@ provider equinix {
 }
 
 provider "aws" {
-  region     = "ap-southeast-1" 
+  region = var.primary_aws_region
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
 }
 
 provider "aws" {
-  alias = "ap-east-1"
-  region     = "ap-east-1"
+  alias = "secondary"
+  region     = var.secondary_aws_region
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
-}
+} 
 

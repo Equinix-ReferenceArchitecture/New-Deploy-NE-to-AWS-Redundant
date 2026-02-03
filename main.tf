@@ -47,7 +47,7 @@ resource "equinix_fabric_connection" "vd2AWS_Pri" {
     access_point {
       type               = "SP"
       authentication_key = var.authentication_key
-      seller_region      = var.seller_region
+      seller_region      = var.primary_aws_region
       profile {
         type = "L2_PROFILE"
         uuid = var.profile_uuid
@@ -89,7 +89,7 @@ resource "equinix_fabric_connection" "vd2AWS_Sec" {
     access_point {
       type               = "SP"
       authentication_key = var.authentication_key
-      seller_region      = var.seller_region_sec
+      seller_region      = var.secondary_aws_region
       profile {
         type = "L2_PROFILE"
         uuid = var.profile_uuid
@@ -136,7 +136,7 @@ resource "aws_dx_connection_confirmation" "localname1" {
 data "aws_dx_connection" "aws_connection_2" {
   depends_on = [time_sleep.wait_for_dx_secondary]
   name = "Sec-${random_pet.this.id}"
-  provider = aws.ap-east-1
+  provider = aws.secondary
 }
 
 ## to accept AWS Dx Connection - for secondary  connection 
@@ -144,7 +144,7 @@ data "aws_dx_connection" "aws_connection_2" {
 resource "aws_dx_connection_confirmation" "localname2" {
 
   connection_id = data.aws_dx_connection.aws_connection_2.id
-  provider = aws.ap-east-1
+  provider = aws.secondary
 }
 
 

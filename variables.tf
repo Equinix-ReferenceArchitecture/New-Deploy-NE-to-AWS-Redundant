@@ -16,15 +16,6 @@ variable "authentication_key" {
   description = "AWS ID"
   type        = string
 }
-variable "seller_region" {
-  description = "Seller Region"
-  type        = string
-}
-
-variable "seller_region_sec" {
-  description = "Seller Region"
-  type        = string
-}
 
 variable "profile_uuid" {
   description = "AWS profile UUID"
@@ -81,4 +72,14 @@ variable "Pri_AWS_Region" {
 variable "Sec_AWS_Region" {
   description = "Secondary AWS Region"
   type        = string
+}
+
+variable "primary_aws_region" {
+  description = "This is the aws primary region"
+  type = string
+}
+
+variable "secondary_aws_region" {
+  description = "This is the aws primary region"
+  type = string
 }
